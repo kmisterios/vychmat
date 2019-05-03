@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[137]:
+# In[155]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -18,20 +18,20 @@ def f(x,y):
         return math.exp((-1)/(1 - r**2))
 
 
-# In[138]:
+# In[156]:
 
 
 def a(x,y):
     return (x**2 + y**2 + 1)/10
 
 
-# In[139]:
+# In[157]:
 
 
 h = 1 / 20
 n = 20
-X = np.linspace(0,1,n)
-Y = np.linspace(0,1,n)
+X = np.linspace(0,1,n+1)
+Y = np.linspace(0,1,n+1)
 A = np.zeros((len(X),len(Y)))
 F = np.zeros((len(X),len(Y)))
 for i in range(len(X)):
@@ -42,6 +42,7 @@ for i in range(len(X)):
 M = np.zeros((len(X)*len(X),len(Y)*len(X)))
 s = np.zeros((len(X)*len(X)))
 k = 0
+n = len(X)
 #определяем матрицу
 for i in range(n):
     for j in range(n):
@@ -97,7 +98,7 @@ for i in range(n):
         k += 1
 
 
-# In[140]:
+# In[158]:
 
 
 from scipy.sparse.linalg import cg
@@ -112,7 +113,7 @@ def Report(xk):
     return
 
 
-# In[145]:
+# In[159]:
 
 
 #считаем
@@ -121,7 +122,7 @@ r=[]
 x=cg(M, s, x0=u, tol=1e-6, maxiter=1E6, M=None, callback=Report, atol=None)
 
 
-# In[143]:
+# In[160]:
 
 
 #cтроим график решения
@@ -142,7 +143,7 @@ plt.savefig('solution.png')
 plt.show()
 
 
-# In[144]:
+# In[161]:
 
 
 #строим график неувязки
